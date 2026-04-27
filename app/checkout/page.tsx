@@ -95,7 +95,25 @@ export default function checkout() {
             onChange={(e)=> setEndereco({...endereco, estado: e.target.value})}
             />
 
+
+          
+        <div className="mt-4 space-y-2">
+            {fretes.length > 0 && (
+              <h2 className="font-bold">Escolha o frete</h2>
+            )}
+
+            {fretes.map((frete)=>(
+              <div key={frete.id} className="border p-3 rounded">
+                  <p>{frete.nome}</p>
+                  <p>R${frete.preco}</p>
+                  <p>{frete.delivery_tempo} dias</p>
+              </div>
+            ))}
         </div>
+
+        </div>
+
+       
    </main>
   );
 }
