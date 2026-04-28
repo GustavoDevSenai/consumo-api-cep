@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Frete } from "../../types/Frete"
 import { useCart } from "@/context/CartContext";
+import { ResumoPedido } from "../components/ResumoPedido";
 
 interface Endereco {
   cep: string
@@ -115,6 +116,10 @@ export default function checkout() {
                   <p>R${frete.preco}</p>
               </div>
             ))}
+        </div>
+
+        <div>
+          <ResumoPedido />
         </div>
 
         </div>

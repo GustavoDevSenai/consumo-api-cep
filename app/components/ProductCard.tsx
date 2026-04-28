@@ -1,5 +1,6 @@
 "use client"
 
+import { useCart } from "@/context/CartContext"
 import { useRouter } from "next/navigation"
 
 
@@ -7,8 +8,16 @@ export default function ProductCard({ produto }:any){
 
     const router = useRouter()
 
+    const {setProduto} = useCart()
 
     function comprar(){
+
+        setProduto({
+            id:produto.id,
+            title: produto.title,
+            preco: produto.price,
+            image:produto.image
+        })
         router.push("/checkout")
     }
 
