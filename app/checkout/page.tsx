@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Frete } from "../../types/Frete"
+import { useCart } from "@/context/CartContext";
 
 interface Endereco {
   cep: string
@@ -22,6 +23,8 @@ export default function checkout() {
   });
 
   const [fretes,setFretes] = useState<Frete[]>([])
+  //usando o useCart()
+  const {setFrete, frete: freteSelecionado} = useCart();
 
 
   async function buscarCep() {
@@ -103,10 +106,13 @@ export default function checkout() {
             )}
 
             {fretes.map((frete)=>(
-              <div key={frete.id} className="border p-3 rounded">
-                  <p>{frete.nome}</p>
+              <div key={frete.id} 
+              className={`cursor-pointer border p-3 rounded 
+                ${freteSelecionado?.id === frete.id ? 'border-blue-600 bg-blue-50 ':'border-gray-200'}`}
+              onClick={()=>setFrete(frete)} //Salvando no contexto
+              >
+                  <p className="font-bold">{frete.nome}</p>
                   <p>R${frete.preco}</p>
-                  <p>{frete.delivery_tempo} dias</p>
               </div>
             ))}
         </div>
